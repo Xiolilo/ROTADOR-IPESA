@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[1:45 p.m., 7/2/2026] ipesa: <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,5 +25,31 @@ function rotar() {
 rotar();
 setInterval(rotar, 30000); // cambia cada 30 segundos
 </script>
+</body>
+</html>
+[1:48 p.m., 7/2/2026] ipesa: <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rotador Power BI - IPESA</title>
+<script>
+let urls = [
+  "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9"
+];
+
+let i = Number(localStorage.getItem("indice")) || 0;
+
+window.onload = function() {
+  setTimeout(() => {
+    localStorage.setItem("indice", (i + 1) % urls.length);
+    window.location.href = urls[i];
+  }, 30000); // 30 segundos por dashboard
+};
+</script>
+</head>
+<body style="font-family:Arial;text-align:center;margin-top:20%;">
+<h2>Cargando dashboards IPESA...</h2>
 </body>
 </html>
