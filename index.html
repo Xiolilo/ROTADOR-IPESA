@@ -2,20 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PRUEBA ROTADOR</title>
+<title>Rotador Power BI - IPESA</title>
 </head>
-<body style="font-family:Arial;text-align:center;margin-top:20%;font-size:30px;">
-<div id="texto">Pantalla 1</div>
+<body style="margin:0; background:black;">
+<iframe id="visor" style="width:100%; height:100vh; border:none;"></iframe>
 
 <script>
-let pantallas = ["Pantalla 1", "Pantalla 2", "Pantalla 3"];
+let urls = [
+  "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9"
+];
+
 let i = 0;
+const frame = document.getElementById("visor");
 
-setInterval(() => {
-  document.getElementById("texto").innerText = pantallas[i];
-  i = (i + 1) % pantallas.length;
-}, 3000);
+function rotar() {
+  frame.src = urls[i];
+  i = (i + 1) % urls.length;
+}
+
+rotar();
+setInterval(rotar, 30000); // cambia cada 30 segundos
 </script>
-
 </body>
 </html>
