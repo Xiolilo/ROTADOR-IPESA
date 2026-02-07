@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rotador Power BI - IPESA</title>
+<script>
+let urls = [
+  "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9"
+];
+
+let index = 0;
+
+function rotate() {
+  window.location.href = urls[index];
+  index = (index + 1) % urls.length;
+}
+
+// Cambia cada 30 segundos (puedes ajustar)
+setTimeout(rotate, 30000);
+</script>
+</head>
+<body style="font-family:Arial;text-align:center;margin-top:20%;">
+<h2>Cargando dashboards IPESA...</h2>
+</body>
+</html>
