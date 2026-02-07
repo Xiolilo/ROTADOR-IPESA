@@ -1,55 +1,43 @@
-[1:45 p.m., 7/2/2026] ipesa: <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Rotador Power BI - IPESA</title>
 </head>
 <body style="margin:0; background:black;">
-<iframe id="visor" style="width:100%; height:100vh; border:none;"></iframe>
+
+<div id="contenedor" style="width:100%; height:100vh;">
+  <iframe id="visor" style="width:100%; height:100%; border:none;"></iframe>
+</div>
 
 <script>
-let urls = [
-  "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
-  "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
-  "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9"
+let rotador = [
+  { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" },
+  { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" },
+  { tipo: "img", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
+  { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" }
 ];
 
 let i = 0;
-const frame = document.getElementById("visor");
 
 function rotar() {
-  frame.src = urls[i];
-  i = (i + 1) % urls.length;
+  const visor = document.getElementById("visor");
+  const contenedor = document.getElementById("contenedor");
+
+  if(rotador[i].tipo === "iframe"){
+    contenedor.innerHTML = `<iframe id="visor" style="width:100%; height:100%; border:none;" src="${rotador[i].src}"></iframe>`;
+  } else if(rotador[i].tipo === "img"){
+    contenedor.innerHTML = `<img id="visor" src="${rotador[i].src}" style="width:100%; height:100%; object-fit:contain;">`;
+  }
+
+  i = (i + 1) % rotador.length;
 }
 
+// Primera carga
 rotar();
-setInterval(rotar, 30000); // cambia cada 30 segundos
+// Rotar cada 30 segundos
+setInterval(rotar, 30000);
 </script>
-</body>
-</html>
-[1:48 p.m., 7/2/2026] ipesa: <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Rotador Power BI - IPESA</title>
-<script>
-let urls = [
-  "https://app.powerbi.com/view?r=eyJrIjoiNjRkNTM4ZjMtNjUzNy00NmZiLWJkMDctYTllMGVjMGM4NmJkIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
-  "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9",
-  "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9"
-];
 
-let i = Number(localStorage.getItem("indice")) || 0;
-
-window.onload = function() {
-  setTimeout(() => {
-    localStorage.setItem("indice", (i + 1) % urls.length);
-    window.location.href = urls[i];
-  }, 30000); // 30 segundos por dashboard
-};
-</script>
-</head>
-<body style="font-family:Arial;text-align:center;margin-top:20%;">
-<h2>Cargando dashboards IPESA...</h2>
 </body>
 </html>
