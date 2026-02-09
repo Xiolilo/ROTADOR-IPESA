@@ -2,18 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Rotador Power BI - IPESA</title>
+<title>Rotador IPESA - Facturación y Agenda</title>
 </head>
+
 <body style="margin:0; background:black;">
 
 <div id="contenedor" style="width:100%; height:100vh;"></div>
 
 <script>
 let rotador = [
-  { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" },
-  { tipo: "img", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
-  { tipo: "img", src: "agenda%20tecnica%20ATE.jpg" },
-  { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" }
+  { titulo: "FACTURACIÓN TOTAL", src: "facturacion_total.jpg" },
+  { titulo: "FACTURACIÓN JD", src: "facturacion_JD.jpg" },
+  { titulo: "FACTURACIÓN WIRTGEN", src: "facturacion_wirtgen.jpg" },
+  { titulo: "REGLAS DE ORO", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
+  { titulo: "AGENDA DE ATE", src: "agenda%20tecnica%20ATE.jpg" }
 ];
 
 let i = 0;
@@ -22,22 +24,26 @@ function rotar() {
   const contenedor = document.getElementById("contenedor");
   const actual = rotador[i];
 
-  if(actual.tipo === "iframe"){
-    contenedor.innerHTML = `<iframe style="width:100%; height:100%; border:none;" src="${actual.src}"></iframe>`;
-  } 
-  else if(actual.tipo === "img"){
-    contenedor.innerHTML = `<img src="${actual.src}" style="width:100%; height:100%; object-fit:contain; background:black;">`;
-  }
+  contenedor.innerHTML = `
+    <div style="width:100%; height:100%; display:flex; flex-direction:column; background:black;">
+      <div style="color:white; font-size:26px; font-weight:bold; padding:12px 20px; font-family:Arial;">
+        ${actual.titulo}
+      </div>
+      <img 
+        src="${actual.src}" 
+        style="width:100%; height:100%; object-fit:contain; background:black;">
+    </div>
+  `;
 
   i = (i + 1) % rotador.length;
 }
 
 // Primera carga
 rotar();
-// Rotar cada 45 segundos
-setInterval(rotar, 45000);
+
+// Rotar cada 25 segundos (ajustable)
+setInterval(rotar, 25000);
 </script>
 
 </body>
 </html>
-
