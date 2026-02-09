@@ -6,28 +6,27 @@
 </head>
 <body style="margin:0; background:black;">
 
-<div id="contenedor" style="width:100%; height:100vh;">
-  <iframe id="visor" style="width:100%; height:100%; border:none;"></iframe>
-</div>
+<div id="contenedor" style="width:100%; height:100vh;"></div>
 
 <script>
 let rotador = [
   { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiNjk2MjE3ZjQtN2M5Zi00ZjQwLWI3MmUtN2ZmYWEwNWE1MjkwIiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" },
   { tipo: "img", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
-  { tipo: "img", src: "agenda%20tecnica%20ATE.jpg" }
+  { tipo: "img", src: "agenda%20tecnica%20ATE.jpg" },
   { tipo: "iframe", src: "https://app.powerbi.com/view?r=eyJrIjoiOGU2ZGRjODAtYjU3ZC00YzFmLTk5NGItMGNmZTI5ODg0MWI3IiwidCI6ImRhYzY4ZWFjLTViNGQtNDEzOC1hMWEwLTk5OTQ5YjY5YmM5NCJ9" }
 ];
 
 let i = 0;
 
 function rotar() {
-  const visor = document.getElementById("visor");
   const contenedor = document.getElementById("contenedor");
+  const actual = rotador[i];
 
-  if(rotador[i].tipo === "iframe"){
-    contenedor.innerHTML = `<iframe id="visor" style="width:100%; height:100%; border:none;" src="${rotador[i].src}"></iframe>`;
-  } else if(rotador[i].tipo === "img"){
-    contenedor.innerHTML = `<img id="visor" src="${rotador[i].src}" style="width:100%; height:100%; object-fit:contain;">`;
+  if(actual.tipo === "iframe"){
+    contenedor.innerHTML = `<iframe style="width:100%; height:100%; border:none;" src="${actual.src}"></iframe>`;
+  } 
+  else if(actual.tipo === "img"){
+    contenedor.innerHTML = `<img src="${actual.src}" style="width:100%; height:100%; object-fit:contain; background:black;">`;
   }
 
   i = (i + 1) % rotador.length;
