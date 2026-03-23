@@ -24,14 +24,32 @@ function rotar() {
   const contenedor = document.getElementById("contenedor");
   const actual = rotador[i];
 
+  let contenido = "";
+
+  // 🔥 AQUÍ ESTÁ LA MAGIA
+  if (actual.link) {
+    contenido = `
+      <div style="flex:1; display:flex; justify-content:center; align-items:center;">
+        <a href="${actual.link}" target="_blank" 
+           style="color:white; font-size:30px; text-decoration:none; border:2px solid white; padding:20px 40px; border-radius:10px;">
+          Ver Agenda Técnica
+        </a>
+      </div>
+    `;
+  } else {
+    contenido = `
+      <img 
+        src="${actual.src}" 
+        style="width:100%; height:100%; object-fit:contain; background:black;">
+    `;
+  }
+
   contenedor.innerHTML = `
     <div style="width:100%; height:100%; display:flex; flex-direction:column; background:black;">
       <div style="color:white; font-size:26px; font-weight:bold; padding:12px 20px; font-family:Arial;">
         ${actual.titulo}
       </div>
-      <img 
-        src="${actual.src}" 
-        style="width:100%; height:100%; object-fit:contain; background:black;">
+      ${contenido}
     </div>
   `;
 
@@ -41,10 +59,9 @@ function rotar() {
 // Primera carga
 rotar();
 
-// Rotar cada 25 segundos (ajustable)
+// Rotar cada 25 segundos
 setInterval(rotar, 25000);
 </script>
 
 </body>
 </html>
-
