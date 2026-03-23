@@ -26,15 +26,13 @@ function rotar() {
 
   let contenido = "";
 
-  // 🔥 AQUÍ ESTÁ LA MAGIA
+  // 🔥 AHORA MUESTRA EL LINK COMO PANTALLA
   if (actual.link) {
     contenido = `
-      <div style="flex:1; display:flex; justify-content:center; align-items:center;">
-        <a href="${actual.link}" target="_blank" 
-           style="color:white; font-size:30px; text-decoration:none; border:2px solid white; padding:20px 40px; border-radius:10px;">
-          Ver Agenda Técnica
-        </a>
-      </div>
+      <iframe 
+        src="${actual.link}" 
+        style="width:100%; height:100%; border:none;">
+      </iframe>
     `;
   } else {
     contenido = `
