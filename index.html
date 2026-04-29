@@ -3,6 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Rotador IPESA - Facturación y Agenda</title>
+
+<script>
+let mostrarPanel = true;
+
+// URL del panel
+let panelURL = "https://ipesa.simova.cloud/custom/panel/Funcionario?empresa=4&filial=7&local=7&token=36435c35b941885eac1d747432f179e5334581d50606d041c2fe1752eb3666c3";
+
+// Si estamos en modo panel, redirige
+if (window.location.search !== "?rotador") {
+    setTimeout(() => {
+        window.location.href = panelURL;
+    }, 1000);
+}
+</script>
+
 </head>
 
 <body style="margin:0; background:black;">
@@ -10,13 +25,13 @@
 <div id="contenedor" style="width:100%; height:100vh;"></div>
 
 <script>
+
 let rotador = [
-  { tipo: "link", titulo: "PANEL FUNCIONARIO", src: "https://ipesa.simova.cloud/custom/panel/Funcionario?empresa=4&filial=7&local=7&token=36435c35b941885eac1d747432f179e5334581d50606d041c2fe1752eb3666c3" },
-  { tipo: "imagen", titulo: "FACTURACIÓN TOTAL", src: "facturacion_total.jpg" },
-  { tipo: "imagen", titulo: "FACTURACIÓN JD", src: "facturacion_JD.jpg" },
-  { tipo: "imagen", titulo: "FACTURACIÓN WIRTGEN", src: "facturacion_wirtgen.jpg" },
-  { tipo: "imagen", titulo: "REGLAS ASESOR DE SERVICIOS", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
-  { tipo: "imagen", titulo: "AGENDA TÉCNICA ATE", src: "agenda tecnica ATE.jpg" }
+  { titulo: "FACTURACIÓN TOTAL", src: "facturacion_total.jpg" },
+  { titulo: "FACTURACIÓN JD", src: "facturacion_JD.jpg" },
+  { titulo: "FACTURACIÓN WIRTGEN", src: "facturacion_wirtgen.jpg" },
+  { titulo: "REGLAS ASESOR DE SERVICIOS", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" },
+  { titulo: "AGENDA TÉCNICA ATE", src: "agenda tecnica ATE.jpg" }
 ];
 
 let i = 0;
@@ -25,31 +40,28 @@ function rotar() {
   const contenedor = document.getElementById("contenedor");
   const actual = rotador[i];
 
-  if (actual.tipo === "link") {
-    contenedor.innerHTML = `
-      <iframe 
-        src="${actual.src}" 
-        style="width:100%; height:100%; border:none;">
-      </iframe>
-    `;
-  } else {
-    contenedor.innerHTML = `
-      <div style="width:100%; height:100%; display:flex; flex-direction:column; background:black;">
-        <div style="color:white; font-size:26px; font-weight:bold; padding:12px 20px; font-family:Arial;">
-          ${actual.titulo}
-        </div>
-        <img 
-          src="${actual.src}" 
-          style="width:100%; height:100%; object-fit:contain; background:black;">
+  contenedor.innerHTML = `
+    <div style="width:100%; height:100%; display:flex; flex-direction:column; background:black;">
+      <div style="color:white; font-size:26px; font-weight:bold; padding:12px 20px; font-family:Arial;">
+        ${actual.titulo}
       </div>
-    `;
-  }
+      <img 
+        src="${actual.src}" 
+        style="width:100%; height:100%; object-fit:contain; background:black;">
+    </div>
+  `;
 
   i = (i + 1) % rotador.length;
 }
 
 rotar();
 setInterval(rotar, 25000);
+
+// Después de 2 minutos vuelve a cargar el panel
+setTimeout(() => {
+    window.location.href = window.location.pathname;
+}, 120000);
+
 </script>
 
 </body>
