@@ -2,22 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Rotador IPESA - Facturación y Agenda</title>
-
-<script>
-let mostrarPanel = true;
-
-// URL del panel
-let panelURL = "https://ipesa.simova.cloud/custom/panel/Funcionario?empresa=4&filial=7&local=7&token=36435c35b941885eac1d747432f179e5334581d50606d041c2fe1752eb3666c3";
-
-// Si estamos en modo panel, redirige
-if (window.location.search !== "?rotador") {
-    setTimeout(() => {
-        window.location.href = panelURL;
-    }, 1000);
-}
-</script>
-
+<title>Rotador IPESA</title>
 </head>
 
 <body style="margin:0; background:black;">
@@ -29,6 +14,10 @@ if (window.location.search !== "?rotador") {
 let rotador = [
   { titulo: "FACTURACIÓN JD", src: "FACT_JD.jpg" },
   { titulo: "FACTURACIÓN WIRTGEN", src: "FACT_WIR.jpg" },
+
+  { titulo: "AGENDA ATE 1", src: "AGENDA_ATE1.jpg" },
+  { titulo: "AGENDA ATE 2", src: "AGENDA_ATE2.jpg" },
+
   { titulo: "INDICADOR PRODUCTIVIDAD", src: "IND_PROD.jpg" },
   { titulo: "FLYER JP", src: "FLYER_JP.jpeg" },
   { titulo: "REGLAS ASESOR DE SERVICIOS", src: "300126_IPESA_CUADRO Reglas Asesor de Servicios (1)_page-0001.jpg" }
@@ -56,11 +45,6 @@ function rotar() {
 
 rotar();
 setInterval(rotar, 25000);
-
-// Después de 2 minutos vuelve a cargar el panel
-setTimeout(() => {
-    window.location.href = window.location.pathname;
-}, 120000);
 
 </script>
 
