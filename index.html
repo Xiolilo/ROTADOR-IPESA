@@ -5,9 +5,14 @@
 <title>Rotador IPESA</title>
 </head>
 
-<body style="margin:0; background:black;">
+<body style="margin:0; background:black; overflow:hidden;">
 
 <div id="contenedor" style="width:100%; height:100vh;"></div>
+
+<!-- Punto invisible anti-reposo -->
+<div id="antiReposo" 
+     style="position:absolute; width:2px; height:2px; background:black; top:0; left:0;">
+</div>
 
 <script>
 
@@ -48,6 +53,15 @@ function rotar() {
 
 rotar();
 setInterval(rotar, 25000);
+
+/* ===== SISTEMA ANTI REPOSO ===== */
+let mover = 0;
+
+setInterval(() => {
+  const anti = document.getElementById("antiReposo");
+  mover = (mover + 1) % 2;
+  anti.style.transform = `translateX(${mover}px)`;
+}, 10000);
 
 </script>
 
